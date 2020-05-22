@@ -17,6 +17,9 @@ import java.io.IOException;
 public class HelloFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+        //如果需要提前获取 request 中的参数进行逻辑判断，就需要在 doFilter 之前进行判断和处理
+        //如果需要对 request 或者 response 进行包裹（使用wrapper类），也需要 doFilter 进行包裹
         super.doFilter(req, res, chain);
+        //如果需要获取 response 中的参数进行逻辑判断，就需要在 doFilter 之后进行判断和处理
     }
 }
