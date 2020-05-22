@@ -2,7 +2,7 @@ package thread;
 
 /**
  * @description: 消费者和生产者
- * @author: shenchao
+ * @author: kuroneko
  * @create: 2020-05-11 18:21
  **/
 public class ConsumerSupplierSynchronized extends Thread {

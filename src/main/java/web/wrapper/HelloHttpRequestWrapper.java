@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
 
 /**
  * @description:
- * @author: shenchao
+ * @author: kuroneko
  * @create: 2020-05-19 10:41
  **/
 public class HelloHttpRequestWrapper extends HttpServletRequestWrapper {

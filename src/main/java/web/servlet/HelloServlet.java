@@ -18,7 +18,7 @@ import java.util.concurrent.Executor;
 
 /**
  * @description: servlet入门
- * @author: shenchao
+ * @author: kuroneko
  * @create: 2020-05-15 20:36
  **/
 @WebServlet(urlPatterns = "/hello")

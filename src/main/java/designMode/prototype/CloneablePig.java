@@ -2,7 +2,7 @@ package designMode.prototype;
 
 /**
  * @description:
- * @author: shenchao
+ * @author: kuroneko
  * @create: 2020-05-12 17:13
  **/
 public class CloneablePig {
