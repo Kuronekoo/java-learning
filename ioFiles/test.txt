@@ -1,0 +1,2 @@
+this is a text!
+it can be used for java io tests!
