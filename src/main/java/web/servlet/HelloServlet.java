@@ -31,7 +31,7 @@ public class HelloServlet extends HttpServlet {
         writer.write("<h1> hello ! </h1>");
         writer.write("<h1> word ! </h1>");
         writer.flush();
-        ServletOutputStream outputStream = resp.getOutputStream();
+//        resp.getOutputStream();
         System.out.println("hello servlet");
     }
 }
