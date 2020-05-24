@@ -50,6 +50,8 @@ public class ParameterResponseWrapper extends HttpServletResponseWrapper {
             writer.flush();
         }
     }
+    //调用ByteArrayOutputStream的reset，重置输出流，使得输出流可以再次使用
+    //重置输出流，清空数组，设置数组的count为0
     @Override
     public void reset() {
         buffer.reset();

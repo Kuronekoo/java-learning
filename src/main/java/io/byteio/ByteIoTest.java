@@ -2,6 +2,7 @@ package io.byteio;
 
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
@@ -32,6 +33,24 @@ public class ByteIoTest {
 
         fileOutputStream.close();
         fileInputStream.close();
+
+    }
+
+    @Test
+    public void testByteArrayOutputStream() throws Exception{
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        //写入字母A
+        out.write(65);
+        System.out.println(out.toString());
+        //写入字母B
+        out.write(66);
+        System.out.println(out.toString());
+        //重置输出流，清空数组，设置数组的count为0
+        out.reset();
+        System.out.println(out.toString());
+        //写入字母k
+        out.write(75);
+        System.out.println(out.toString());
 
     }
 }
