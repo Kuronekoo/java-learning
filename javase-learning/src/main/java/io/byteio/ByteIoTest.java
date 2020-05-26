@@ -12,8 +12,8 @@ import java.io.FileOutputStream;
  * @create: 2020-05-21 16:58
  **/
 public class ByteIoTest {
-    public static final String INPUT_FILE_PATH="ioFiles/test.txt";
-    public static final String OUTPUT_BASE_PATH="ioFiles/";
+    public static final String INPUT_FILE_PATH="../ioFiles/test.txt";
+    public static final String OUTPUT_BASE_PATH="../ioFiles/";
 
     @Test
     public void testFileByteStream() throws Exception{

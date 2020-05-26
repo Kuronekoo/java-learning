@@ -12,8 +12,8 @@ import java.io.FileWriter;
  * @create: 2020-05-22 08:41
  **/
 public class CharIoTest {
-    public static final String READ_FILE_PATH="ioFiles/test.txt";
-    public static final String WRITE_BASE_PATH="ioFiles/";
+    public static final String READ_FILE_PATH="../ioFiles/test.txt";
+    public static final String WRITE_BASE_PATH="../ioFiles/";
 
     @Test
     public void fileReaderTest() throws Exception{
