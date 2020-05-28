@@ -4,11 +4,13 @@ import org.junit.Test;
 
 import javax.swing.*;
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
  * @description: 动态代理测试类
+ * 动态是AOP实现的基石
  * @author: kuroneko
  * @create: 2020-05-27 10:52
  **/
@@ -76,6 +78,7 @@ public class TestProxy {
 
     /**
      * 代理类
+     *
      */
     class FactoryProxy {
 
@@ -104,11 +107,23 @@ public class TestProxy {
                  */
                 @Override
                 public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-//                    System.out.println(proxy.getClass());
+//                    System.out.println(cn.kuroneko.aop.proxy.getClass());
                     System.out.println("prepare...");
                     //调用代理对象的方法，采用被代理的实现，代理类的如入参。
                     //可能有返回参数
-                    Object result = method.invoke(target, args);
+                    Object result = null;
+                    //前置通知在这里实现 @Before
+                    try {
+                        result = method.invoke(target, args);
+                        //返回通知在这里实现，@AfterReturning
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        //异常通知在这里实现。@AfterThrowing
+                    }
+                    //后置通知在这里实现，@After，因为方法可能会出现异常，因此访问不到方法的返回值
+
+
+
                     System.out.println("sale cloths");
                     //return 返回参数
                     return result;
