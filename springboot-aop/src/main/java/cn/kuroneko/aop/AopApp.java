@@ -1,5 +1,6 @@
 package cn.kuroneko.aop;
 
+import cn.kuroneko.aop.service.AnnotationHelloService;
 import cn.kuroneko.aop.service.HelloService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -25,6 +26,9 @@ public class AopApp {
         hello.hello("Alice");
 //        hello.hello("apple");
         hello.shout("Baris","house");
+
+        AnnotationHelloService aHello = ctx.getBean(AnnotationHelloService.class);
+        aHello.aHello("Catalina");
     }
 
 

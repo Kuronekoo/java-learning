@@ -1,11 +1,15 @@
 package cn.kuroneko.aop.proxy;
 
+import cn.kuroneko.aop.annotation.HelloLogging;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 
 /**
@@ -82,11 +86,26 @@ public class LoggingAspect {
     public Object AroundMethod(ProceedingJoinPoint joinPoint){
         Object result = null;
 
+        //判断是否为方法代理的切入点
+        if(joinPoint instanceof MethodInvocationProceedingJoinPoint){
+            //类型强转
+            MethodInvocationProceedingJoinPoint mJoinPoint = (MethodInvocationProceedingJoinPoint) joinPoint;
+            //获取签名
+            //MethodInvocationProceedingJoinPoint的Signature本来就是MethodSignatureImpl
+            MethodSignature methodSignature = (MethodSignature) mJoinPoint.getSignature();
+            //获取代理的方法
+            Method method = methodSignature.getMethod();
+           //然后可以获取注解等
+        }
+
         //执行目标方法
         try {
             //前置通知
             System.out.println("arounding before...");
+            //继续执行参数
             result = joinPoint.proceed();
+            //用的新的args来执行目标方法
+//            joinPoint.proceed(args);
             //返回通知
             System.out.println("arounding AfterReturning...");
         } catch (Throwable throwable) {
@@ -120,6 +139,40 @@ public class LoggingAspect {
         String name = joinPoint.getSignature().getName();
         Object[] args = joinPoint.getArgs();
         System.out.println("---------Pointcut methrod "+ name+" begins with args " + Arrays.asList(args));
+    }
+
+    @Pointcut("@annotation(cn.kuroneko.aop.annotation.HelloLogging)")
+    public void declareHelloLoggingPointcut(){};
+
+    /**
+     * 环绕通知相当于动态代理的全过程
+     * 必须携带ProceedingJoinPoint参数，ProceedingJoinPoint可以决定是否执行目标方法
+     * 且环绕通知必须有返回值，返回值为目标方法的返回值
+     * @param joinPoint
+     */
+    @Around(value = "declareHelloLoggingPointcut())")
+    public Object aHelloAroundMethod(ProceedingJoinPoint joinPoint) throws Throwable {
+        Object result = null;
+
+        //判断是否为方法代理的切入点
+        if(joinPoint instanceof MethodInvocationProceedingJoinPoint){
+            //类型强转
+            MethodInvocationProceedingJoinPoint mJoinPoint = (MethodInvocationProceedingJoinPoint) joinPoint;
+            //获取签名
+            //MethodInvocationProceedingJoinPoint的Signature本来就是MethodSignatureImpl
+            MethodSignature methodSignature = (MethodSignature) mJoinPoint.getSignature();
+            //获取代理的方法
+            Method method = methodSignature.getMethod();
+            //然后可以获取注解等
+            HelloLogging helloLogging = method.getAnnotation(HelloLogging.class);
+            //do something
+            String value = helloLogging.value();
+            System.out.println(value);
+        }
+
+        //继续执行参数
+        result = joinPoint.proceed();
+        return result;
     }
 
 
