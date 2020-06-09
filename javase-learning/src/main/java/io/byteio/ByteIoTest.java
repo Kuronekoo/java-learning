@@ -2,16 +2,24 @@ package io.byteio;
 
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
 
 /**
  * @description:
  * @author: kuroneko
  * @create: 2020-05-21 16:58
  **/
-public class ByteIoTest {
+public class ByteIoTest implements Serializable{
+    private String name ="ByteIoTest";
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public static final String INPUT_FILE_PATH="../ioFiles/test.txt";
     public static final String OUTPUT_BASE_PATH="../ioFiles/";
 
@@ -51,6 +59,24 @@ public class ByteIoTest {
         //写入字母k
         out.write(75);
         System.out.println(out.toString());
+
+    }
+
+    @Test
+    public void testObjectStream() throws IOException, ClassNotFoundException {
+        ByteIoTest byteIoTest = new ByteIoTest();
+        byteIoTest.setName("xxxxxx");
+        FileOutputStream fileOutputStream = new FileOutputStream(OUTPUT_BASE_PATH +"obj.data");
+        ObjectOutputStream oos = new ObjectOutputStream(fileOutputStream);
+        oos.writeObject(byteIoTest);
+        oos.flush();
+        oos.close();
+        fileOutputStream.close();
+
+        FileInputStream fileInputStream = new FileInputStream(OUTPUT_BASE_PATH + "obj.data");
+        ObjectInputStream ois = new ObjectInputStream(fileInputStream);
+        ByteIoTest readFromData = (ByteIoTest) ois.readObject();
+        System.out.println(readFromData.getName());
 
     }
 }

@@ -11,6 +11,8 @@
     <modules>
         <module>javase-learning</module>
         <module>springboot-aop</module>
+        <module>my-ioc</module>
+        <module>algorithm</module>
     </modules>
 
 <properties>

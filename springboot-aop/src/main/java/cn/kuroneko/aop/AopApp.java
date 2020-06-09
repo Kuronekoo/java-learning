@@ -11,6 +11,9 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @description:
  * @author: kuroneko
@@ -20,7 +23,16 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 @SpringBootApplication
 public class AopApp {
     public static void main(String[] args) {
+//        SpringApplication.run(AopApp.class);
         SpringApplication springApplication = new SpringApplication(AopApp.class);
+//        StackTraceElement[] stackTrace = new RuntimeException().getStackTrace();
+//        List<StackTraceElement> stackTraceElements =
+//                Arrays.asList(stackTrace);
+//        stackTraceElements.forEach(a->{
+//            System.out.println(a.getMethodName());
+//            System.out.println(a.getClassName());
+//        });
+
         ConfigurableApplicationContext ctx = springApplication.run(args);
         HelloService hello = ctx.getBean(HelloService.class);
         hello.hello("Alice");
