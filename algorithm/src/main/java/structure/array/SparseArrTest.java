@@ -1,7 +1,6 @@
-package structure;
+package structure.array;
 
 import java.io.*;
-
 /**
  * @description: 稀疏数组
  *
